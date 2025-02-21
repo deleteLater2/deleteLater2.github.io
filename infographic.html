@@ -1,0 +1,413 @@
+<!--file:///home/catten/infographic/infographic.html-->
+<!--rember to host on github pages-->
+
+<style>
+@font-face {
+    font-family: "Terminess Nerd Font";
+    src: url("fonts/TerminessNF-Bold.woff2") format("woff2"), url("fonts/TerminessNF-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+a:link {
+  color: #41A7FC;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #C75AE8;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #34BFD0;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #41A7FC;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.backgroundContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.background {
+    background-color: #04070A;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box; 
+    width: 1024px;
+    padding: 20px;
+}
+
+.roundedSquare {
+    background-color: #1A212E;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box; 
+    color: #6C7D9C;
+    font-family: "Terminess Nerd Font";
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.heading {
+    color: #93A4C3;
+    font-family: "Terminess Nerd Font";
+    text-align: center;
+    line-height: 0px;
+}
+
+.reference {
+    padding-left: 36px;
+    text-indent: -36px;
+}
+
+.wrap {
+    display: flex;
+    gap: 20px;
+}
+
+.infographic {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+} 
+
+.diagram {
+    display: grid;
+    grid-template-rows: 64px;
+    grid-auto-rows: 64px;
+    grid-template-columns: 64px;
+    grid-auto-columns: 64px;
+    grid-template-areas:
+        "div div div div div div div div div div div div div"
+        "div div div div div div div div div div div div div"
+        "div div div div div div div div div div div div div"
+        "div div div div div div div div div div div div div"
+        "div div div div div div div div div div div div div";
+    gap: 10px;
+    width: 100%;
+}
+
+.infoBlock {
+    position: relative;
+}
+
+.label {
+    font-family: "Terminess Nerd Font";
+    font-size: 12px;
+    width: 100%;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.name {
+    color: #93A4C3;
+    font-family: "Terminess Nerd Font";
+    font-size: 12px;
+    width: 100%;
+}
+</style>
+
+<!DOCTYPE html>
+<html>
+<body>
+<div class="backgroundContainer">
+    <div class="background">
+        <div class="name">
+            Gray Foryan
+        </div>
+        <h1 class="heading">How RSA Works (In the Real World)</h1>
+        <div>
+            
+        </div>
+        <div class="roundedSquare">
+            <h2 class="heading">Claim</h2>
+            <img src="images/sourceInfographic.png" class="infographic">
+            This infographic <i><a href="https://eclypses.com/wp-content/uploads/2023/03/RSA-Graphic1-1024x471.png">How RSA Encryption Works</a></i> is a dangerous oversimplification of how RSA works because it leaves out OAEP padding, where the keys come from, and how to fix input size limitations with AES.
+        </div>
+
+        <br>
+
+        <div class="wrap">
+            <div class="roundedSquare" style="width: 100%;">
+                <h2 class="heading">OAEP</h2>
+                The article <i>An Overview of RSA and OAEP Padding</i> mentions that "RSA is a deterministic encryption which produces the same ciphertext given the same plaintext and key. An adversary can launch a chosen plaintext attack against the RSA encryption ... This attack would lead the leakage of important information of the plaintext." OAEP creates a probabilistic algorithm from the deterministic RSA algorithm, which is more secure. Without OAEP, RSA can be broken fairly easily.
+            </div>
+            <div class="roundedSquare" style="width: 100%; justify-self: right">
+                <h2 class="heading">AES</h2>
+                        <i>PKCS #1: RSA Cryptography Specifications Version 2.0</i> explains how RSA works, including information the infographic missed. It shows why AES with RSA is the norm, because the input message has to be, "an octet string of length at most k-2-2hLen, where k is the length in octets of the modulus n and hLen is the length in octets of the hash function output for EME-OAEP." Its recommended to encrypt the plaintext with AES and <i>then</i> encrypt the AES key with RSA so that the input never exceeds the max.
+            </div>
+        </div>
+
+        <br>
+
+        <div class="roundedSquare">
+            <div style="position: relative;">
+                <h2 style="position: absolute; left: 400px; top: 0px;" class="heading">What it really looks like</h2>
+            </div>
+            <br>
+            <br>
+            <div class="diagram">
+
+                <!--1-->
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/plaintext.png" class="image">
+                    <p style="position: absolute; left: 0px; top: -32px;" class="label">Plaintext</p>
+                </div>
+                <div class="infoBlock">
+                    <img src="images/arrowRight.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/ciphertext.png" class="image">
+                    <p style="position: absolute; left: 0px; top: -32;" class="label">Ciphertext</p>
+                </div>
+                <div class="infoBlock">
+                    <img src="images/cornerBottomLeft.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/cornerBottomRight.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/pipeHorizontal.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/pipeHorizontal.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/ciphertext.png" class="image">
+                    <p style="position: absolute; left: 0px; top: -32px;" class="label">Ciphertext</p>
+                </div>
+                <div class="infoBlock">
+                    <img src="images/arrowRight.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/plaintext.png" class="image">
+                    <p style="position: absolute; left: 0px; top: -32px;" class="label">Plaintext</p>
+                </div>
+
+                <!--2-->
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/arrowUp.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/pipeVertical.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/pipeVertical.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/arrowUp.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+
+                <!--3-->
+                <div class="infoBlock">
+                    <img src="images/oaep.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/arrowRight.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/aesKey.png" class="image">
+                    <p style="position: absolute; left: 20px; top: 35px;" class="label">AES Key</p>
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/tRight.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/internet.png" class="image">
+                    <p style="position: absolute; left: -2px; top: -32;" class="label">Internet</p>
+                </div>
+                <div class="infoBlock">
+                    <img src="images/tLeft.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/privateKey.png" class="image">
+                    <p style="position: absolute; left: -6px; top: -32;" class="label">RSA Private Key</p>
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/aesKey.png" class="image">
+                    <p style="position: absolute; left: 20px; top: 35px;" class="label">AES Key</p>
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+
+                <!--4-->
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/arrowDown.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/pipeVertical.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/pipeVertical.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/arrowDown.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/arrowUp.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+
+                <!--5-->
+                <div class="infoBlock">
+                    <img src="images/publicKey.png" class="image">
+                    <p style="position: absolute; left: 30px; top: 35px;" class="label">RSA Public Key</p>
+                </div>
+                <div class="infoBlock">
+                    <img src="images/arrowRight.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/paddedAESKey.png" class="image">
+                    <p style="position: absolute; left: 30px; top: 35px;" class="label">AES Padded Key</p>
+                </div>
+                <div class="infoBlock">
+                    <img src="images/arrowRight.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/paddedEncryptedAESKey.png" class="image">
+                    <p style="position: absolute; left: -30px; top: 60px;" class="label">AES Encrypted Padded Key</p>
+                </div>
+                <div class="infoBlock">
+                    <img src="images/cornerTopLeft.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/empty.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/cornerTopRight.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/paddedEncryptedAESKey.png" class="image">
+                    <p style="position: absolute; left: -45px; top: 60px;" class="label">AES Encrypted Padded Key</p>
+                </div>
+                <div class="infoBlock">
+                    <img src="images/arrowRight.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/paddedAESKey.png" class="image">
+                    <p style="position: absolute; left: 30px; top: 40px;" class="label">AES Padded Key</p>
+                </div>
+                <div class="infoBlock">
+                    <img src="images/arrowLeft.png" class="image">
+                </div>
+                <div class="infoBlock">
+                    <img src="images/oaep.png" class="image">
+                </div>
+            </div>
+            <br>
+            <br>
+            A sender gets the public key of the recipient, encrypts the plaintext with a new AES key, which is then padded with OAEP and encrypted with the recipient's public key. The sender sends both the encrypted and padded AES key as well as the ciphertext to the recipient. The recipient decrypts the AES key with their private key, unpads it, and uses it to decrypt the cipher text.
+        </div>
+
+        <br>
+
+        <div style="padding: 10px" class="roundedSquare">
+
+            <div>
+                <h2 style="font-size: 16px;" class="heading">Sources:</h2>
+            </div>
+
+            <div>
+                <div style="font-size: 10px;" class="reference">
+                    <i>How RSA Encryption Works</i>. Eclypses, March 14, 2023. 
+                    <a href="https://eclypses.com/news/rsa-encryption-an-antiquated-technology-still-being-used-today/">https://eclypses.com/news/rsa-encryption-an-antiquated-technology-still-being-used-today/</a>. Accessed 5 Feb. 2025.
+                </div>
+                <div style="font-size: 10px;" class="reference">
+                    Burt Kaliski and Jessica Staddon. <i>PKCS #1: RSA Cryptography Specifications</i>. Oct. 1998. 
+                    <a href="https://www.rfc-editor.org/rfc/rfc2437">https://www.rfc-editor.org/rfc/rfc2437</a>. Accessed 5 Feb. 2025.
+                </div>
+                <div style="font-size: 10px;" class="reference">
+                    Zhong, Yutong. <i>An Overview of RSA and OAEP Padding</i>. 2022. 
+                    <a href="https://drpress.org/ojs/index.php/HSET/article/view/431/373">https://drpress.org/ojs/index.php/HSET/article/view/431/373</a>. Accessed 5 Feb. 2025.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
