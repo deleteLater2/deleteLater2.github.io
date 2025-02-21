@@ -377,7 +377,7 @@ a:active {
             </div>
             <br>
             <br>
-            A sender gets the public key of the recipient, encrypts the plaintext with a new AES key, which is then padded with OAEP and encrypted with the recipient's public key. The sender sends both the encrypted and padded AES key as well as the ciphertext to the recipient. The recipient decrypts the AES key with their private key, unpads it, and uses it to decrypt the cipher text.
+            A sender gets the public key of the recipient (which was generated using very big prime numbers), encrypts the plaintext with a new AES key, which is then padded with OAEP and encrypted with the recipient's public key. The sender sends both the encrypted and padded AES key as well as the ciphertext to the recipient. The recipient decrypts the AES key with their private key, unpads it, and uses it to decrypt the cipher text.
         </div>
 
         <br>
